@@ -1,6 +1,6 @@
 class AddRepositoriesIdentifier < ActiveRecord::Migration
   def self.up
-    add_column :repositories, :identifier, :string
+    #add_column :repositories, :identifier, :string
   end
 
   def self.down

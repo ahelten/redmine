@@ -3,7 +3,8 @@ RedmineApp::Application.configure do
   # The production environment is meant for finished, "live" apps.
   # Code is not reloaded between requests
   config.cache_classes = true
-
+  config.log_path = '/usr/share/redmine/redmine-2.3/log/redmine.log'
+  config.email_logpath = '/usr/share/redmine/redmine-2.3/log/email.log'
   #####
   # Customize the default logger (http://ruby-doc.org/core/classes/Logger.html)
   #
@@ -13,8 +14,8 @@ RedmineApp::Application.configure do
   # Rotate logs bigger than 1MB, keeps no more than 7 rotated logs around.
   # When setting a new Logger, make sure to set it's log level too.
   #
-  # config.logger = Logger.new(config.log_path, 7, 1048576)
-  # config.logger.level = Logger::INFO
+ config.logger = Logger.new(config.log_path, 7, 1048576)
+  config.logger.level = Logger::WARN
 
   # Full error reports are disabled and caching is turned on
   config.action_controller.perform_caching = true
@@ -26,7 +27,8 @@ RedmineApp::Application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   # No email in production log
-  config.action_mailer.logger = nil
-
+  #config.action_mailer.logger = nil
+  config.action_mailer.logger = Logger.new(config.email_logpath, 7, 1048576)
+  config.action_mailer.logger.level = Logger::DEBUG
   config.active_support.deprecation = :log
 end

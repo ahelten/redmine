@@ -7,7 +7,7 @@ class AddUniqueIndexToIssueRelations < ActiveRecord::Migration
         IssueRelation.delete_all(["id = ?", i])
     end
 
-    add_index :issue_relations, [:issue_from_id, :issue_to_id], :unique => true
+#    add_index :issue_relations, [:issue_from_id, :issue_to_id], :unique => true
   end
 
   def self.down
